@@ -11,3 +11,6 @@ docker run --rm -v [path where your data lies] a -p 8001:8001 -p 8002:8002 -p 80
 Open your browser (Chrome recommended) and navigate to localhost:8000. Click on import. You will find the mounted folder under minerva_analysis/data/. 
 Example for importing  channel file: minerva_analysis/data/sardana_crop/crop-crc01-097-096.ome.tif.
 After the import go back to localhost:8000 and select one of the tools (e.g. Gater). In Gater you will find the imported project under Data Sources.
+
+## example data
+will be provided soon..
