@@ -1,0 +1,39 @@
+name: minerva_analysis
+channels:
+  - conda-forge
+dependencies:
+  - appdirs
+  - dask
+  - elementpath
+  - flask=2.1
+  - flask-sqlalchemy=2.5.1
+  - hdbscan
+  - itsdangerous
+  - jinja2
+  - joblib
+  - llvmlite
+  - matplotlib
+  - numba
+  - numpy
+  - numpy-indexed
+  - ome-types
+  - orjson
+  - pandas
+  - pillow
+  - pip
+  - python=3.10
+  - requests
+  - scikit-image
+  - scikit-learn
+  - scipy
+  - sqlalchemy=1.4.41
+  - tifffile
+  - umap-learn
+  - waitress
+  - werkzeug
+  - xmlschema
+  - zarr
+
+  - pip:
+    - opencv-python
+    - pycave
