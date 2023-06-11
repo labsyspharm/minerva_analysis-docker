@@ -16,4 +16,4 @@ Example for importing  channel file: minerva_analysis/data/sardana_crop/crop-crc
 After the import go back to localhost:8000 and select one of the tools (e.g. Gater). In Gater you will find the imported project under Data Sources.
 
 ## example data
-will be provided soon..
+(https://www.synapse.org/#!Synapse:syn30919374/wiki/617796)
