@@ -15,8 +15,8 @@ This command runs a docker container from the built image and forwards inner por
 It also mounts your data folder  (here in []) to the inner container folder minerva_analysis/data, so that your data becomes available for imports (rw).
 
 ## accessing the tool and importing data
-Open your browser (Chrome recommended) and navigate to localhost:8000. Click on import. You will find the mounted folder under minerva_analysis/data/. 
-Example for importing  channel file: minerva_analysis/data/sardana_crop/crop-crc01-097-096.ome.tif.
+Open your browser (Chrome recommended) and navigate to `localhost:8000`. Click on import. You will find the mounted folder under minerva_analysis/data/. 
+Example for importing channel file: `minerva_analysis/data/sardana_crop/crop-crc01-097-096.ome.tif`.
 After the import go back to localhost:8000 and select one of the tools (e.g. Gater). In Gater you will find the imported project under Data Sources.
 
 ## example data
