@@ -1,7 +1,8 @@
 # minerva_analysis-docker
 A docker project to run Gating, Scope2Screen, and Visinity in a Joint Environment.
 
-![image](https://github.com/labsyspharm/minerva_analysis-docker/assets/31503434/d408fafc-1b46-4e1c-aad3-a5a3f11fbaf6)
+![image](https://github.com/labsyspharm/minerva_analysis-docker/assets/31503434/f826b11d-7fcf-4ec9-a856-fa77a6d3ddc0)
+
 
 
 ## build the docker image (execute in shell):
