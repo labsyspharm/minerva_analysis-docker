@@ -5,6 +5,9 @@ A docker project to run Gating, Scope2Screen, and Visinity in a Joint Environmen
 
 The project pulls minerva_analysis tools from the individual repositories and integrates them into a joint docker image. The docker container starts the tools under individual ports but with shared data import and access and makes them available via a landing/start page (see screenshot).
 
+## Install docker:
+If you haven't yet, install docker from (https://www.docker.com/products/docker-desktop)
+
 ## Build the docker image (execute in shell):
 From the folder containing the dockerfile run `docker build -t minerva_analysis .`
 
