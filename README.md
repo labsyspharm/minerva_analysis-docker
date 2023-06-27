@@ -14,8 +14,8 @@ From the folder containing the dockerfile run `docker build -t minerva_analysis 
 ## Run docker container
 `docker run --rm -v [path where your data lies]:minerva_analysis/data a -p 8001:8001 -p 8002:8002 -p 8003:8003 -p 8000:8000 minerva_analysis`
 
-This command runs a docker container from the built image and forwards inner ports to outerports for importing, gater, scope2screen, and visinity.
-It also bind-mounts your data folder  (here in []) to the inner container folder minerva_analysis/data, so that your data becomes available for imports (rw).
+This command runs a docker container from the built image and forwards inner ports to outer ports for importing, gater, scope2screen, and visinity.
+It also bind-mounts your data folder (here in []) to the inner container folder minerva_analysis/data, so that your data becomes available for imports inside the container (rw).
 
 ## Access the tool and importing data
 Open your browser (Chrome recommended) and navigate to `localhost:8000`. Click on import. You will find the mounted folder under minerva_analysis/data/. 
