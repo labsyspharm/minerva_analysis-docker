@@ -6,7 +6,7 @@ A docker project to run Gating, Scope2Screen, and Visinity in a Joint Environmen
 
 
 ## build the docker image (execute in shell):
-`docker build -t minerva_analysis .`
+From the folder containing the dockerfile run `docker build -t minerva_analysis .`
 
 ## run docker container
 `docker run --rm -v [path where your data lies]:minerva_analysis/data a -p 8001:8001 -p 8002:8002 -p 8003:8003 -p 8000:8000 minerva_analysis`
