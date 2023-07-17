@@ -33,6 +33,7 @@ dependencies:
   - werkzeug
   - xmlschema
   - zarr
+  - pydantic=1.10.8
 
   - pip:
     - opencv-python

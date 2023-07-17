@@ -14,7 +14,6 @@ RUN conda init bash \
     && conda env create -f /app/requirements.yml \
     && conda activate minerva_analysis
 
-
 #EXPOSE 8080
 # ENTRYPOINT ["bash", "/app/entrypoint.sh"]
 RUN chmod +x /app/entrypoint.sh
@@ -22,5 +21,6 @@ CMD ["conda", "run", "-n", "minerva_analysis", "/app/entrypoint.sh"]
 
 # build the docker image (execute in shell):
 # docker build --no-cache -t minerva_analysis .
+
 # run the docker container (execute in shell):
-# docker run --rm -v C:/Users/Rkrueger/projects23/dock2/data:/minerva_analysis/data -p 8001:8001 -p 8002:8002 -p 8003:8003 -p 8000:8000 minerva_analysis
+# docker run --rm -v C:/Users/Rkrueger/projects23/dock2/data:/minerva_analysis/data -p 8001:8001 -p 8002:8002 -p 8003:8003 -p 8080:8000 minerva_analysis
