@@ -27,7 +27,7 @@ dependencies:
   - scikit-learn
   - scipy
   - sqlalchemy=1.4.41
-  - tifffile
+  - tifffile=2023.7.10
   - umap-learn
   - waitress
   - werkzeug
@@ -35,6 +35,14 @@ dependencies:
   - zarr
   - pydantic=1.10.8
 
+  # For pycave (to be installed via pip)
+  - pytorch::cpuonly
+  - pytorch::pytorch>=1.12,<2.0
+  - pytorch-lightning>=1.9,<2.0
+  - torchmetrics>=0.11,<0.12
+
   - pip:
     - opencv-python
-    - pycave
+    # Install the following with pip install --no-dependencies
+    # - lightkit
+    # - pycave

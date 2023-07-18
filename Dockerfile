@@ -1,23 +1,28 @@
-FROM continuumio/miniconda3
+FROM mambaorg/micromamba
+
+USER root
+
 RUN apt-get update \
     && apt-get install libgl1-mesa-glx nginx git -y \
-    && rm -rf /var/lib/apt/lists/* \
+    && rm -rf /var/lib/apt/lists/*
 
-RUN \
- && git clone https://github.com/labsyspharm/visinity.git && git clone https://github.com/labsyspharm/scope2screen.git && git clone https://github.com/labsyspharm/gater.git && git clone https://github.com/labsyspharm/minerva_analysis.git -b import
+USER $MAMBA_USER
 
-COPY . /app
+COPY requirements.yml entrypoint.sh /tmp
 
-RUN conda init bash \
-    && . ~/.bashrc \
-    && conda update conda \
-    && conda env create -f /app/requirements.yml \
-    && conda activate minerva_analysis
+RUN micromamba install -n base -f requirements.yml \
+    && micromamba clean --all --force-pkgs-dirs -y \
+    && /opt/conda/bin/pip install --no-dependencies lightkit pycave \
+    && /opt/conda/bin/pip cache purge
+
+RUN git clone https://github.com/labsyspharm/visinity.git --depth 1 \
+    && git clone https://github.com/labsyspharm/scope2screen.git --depth 1 \
+    && git clone https://github.com/labsyspharm/gater.git --depth 1 \
+    && git clone https://github.com/labsyspharm/minerva_analysis.git --depth 1 -b import
 
 #EXPOSE 8080
 # ENTRYPOINT ["bash", "/app/entrypoint.sh"]
-RUN chmod +x /app/entrypoint.sh
-CMD ["conda", "run", "-n", "minerva_analysis", "/app/entrypoint.sh"]
+CMD ["/bin/bash", "entrypoint.sh"]
 
 # build the docker image (execute in shell):
 # docker build --no-cache -t minerva_analysis .
