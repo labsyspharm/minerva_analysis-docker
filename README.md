@@ -9,10 +9,10 @@ The project pulls minerva_analysis tools from the individual repositories and in
 If you haven't yet, install docker from (https://www.docker.com/products/docker-desktop)
 
 ## Build the docker image (execute in shell):
-From the folder containing the dockerfile run `docker build -t minerva_analysis .`
+From the folder containing the dockerfile run `docker build -t labsyspharm/minerva_analysis:latest .`
 
 ## Run docker container
-`docker run --rm -v [path to your data folder]:minerva_analysis/data a -p 8001:8001 -p 8002:8002 -p 8003:8003 -p 8080:8000 minerva_analysis`
+`docker run --rm -v [path to your data folder]:minerva_analysis/data a -p 8001:8001 -p 8002:8002 -p 8003:8003 -p 8080:8000 labsyspharm/minerva_analysis:latest`
 
 This command runs a docker container from the built image and forwards inner ports to outer ports for importing, gater, scope2screen, and visinity.
 It also bind-mounts your data folder (here in []) to the inner container folder minerva_analysis/data, so that your data becomes available for imports inside the container (rw).

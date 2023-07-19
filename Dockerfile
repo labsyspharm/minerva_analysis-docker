@@ -50,7 +50,7 @@ CODE-INSTALL-EOF
 CMD ["/bin/bash", "entrypoint.sh"]
 
 # build the docker image (execute in shell):
-# docker build --no-cache -t minerva_analysis .
+# docker build -t labsyspharm/minerva_analysis:latest .
 
 # run the docker container (execute in shell):
-# docker run --rm -v C:/Users/Rkrueger/projects23/dock2/data:/minerva_analysis/data -p 8001:8001 -p 8002:8002 -p 8003:8003 -p 8080:8000 minerva_analysis
+# docker run --rm -v C:/Users/Rkrueger/projects23/dock2/data:/minerva_analysis/data -p 8001:8001 -p 8002:8002 -p 8003:8003 -p 8080:8000 labsyspharm/minerva_analysis:latest
