@@ -2,23 +2,48 @@ FROM mambaorg/micromamba
 
 USER root
 
-RUN apt-get update \
-    && apt-get install libgl1-mesa-glx nginx git -y \
-    && rm -rf /var/lib/apt/lists/*
+RUN <<APT-INSTALL-EOF
+    set -e
+    apt-get update
+    apt-get install -y libgl1-mesa-glx curl unzip nginx
+    rm -rf /var/lib/apt/lists/*
+APT-INSTALL-EOF
 
 USER $MAMBA_USER
 
 COPY requirements.yml entrypoint.sh /tmp
 
-RUN micromamba install -n base -f requirements.yml \
-    && micromamba clean --all --force-pkgs-dirs -y \
-    && /opt/conda/bin/pip install --no-dependencies lightkit pycave \
-    && /opt/conda/bin/pip cache purge
+RUN <<PYTHON-INSTALL-EOF
+    set -e
+    micromamba install -n base -f requirements.yml
+    micromamba clean --all --force-pkgs-dirs -y
+    /opt/conda/bin/pip install --no-dependencies lightkit pycave
+    /opt/conda/bin/pip cache purge
+PYTHON-INSTALL-EOF
 
-RUN git clone https://github.com/labsyspharm/visinity.git --depth 1 \
-    && git clone https://github.com/labsyspharm/scope2screen.git --depth 1 \
-    && git clone https://github.com/labsyspharm/gater.git --depth 1 \
-    && git clone https://github.com/labsyspharm/minerva_analysis.git --depth 1 -b import
+# These ADD lines are intended to invalidate the cache for all further layers if
+# any of the repositories are updated.
+ADD "https://api.github.com/repos/labsyspharm/visinity/commits?per_page=1" commits/head_visinity
+ADD "https://api.github.com/repos/labsyspharm/scope2screen/commits?per_page=1" commits/head_scope2screen
+ADD "https://api.github.com/repos/labsyspharm/gater/commits?per_page=1" commits/head_gater
+ADD "https://api.github.com/repos/labsyspharm/minerva_analysis/commits/heads/import?per_page=1" commits/head_minerva_analysis
+RUN <<CODE-INSTALL-EOF
+    set -e
+    curl -LOJ https://github.com/labsyspharm/visinity/archive/refs/heads/main.zip
+    curl -LOJ https://github.com/labsyspharm/scope2screen/archive/refs/heads/master.zip
+    curl -LOJ https://github.com/labsyspharm/gater/archive/refs/heads/main.zip
+    curl -LOJ https://github.com/labsyspharm/minerva_analysis/archive/refs/heads/import.zip
+    unzip visinity-main.zip
+    unzip scope2screen-master.zip
+    unzip gater-main.zip
+    unzip minerva_analysis-import.zip
+    mv visinity-main visinity
+    mv scope2screen-master scope2screen
+    mv gater-main gater
+    mv minerva_analysis-import minerva_analysis
+    rm visinity-main.zip scope2screen-master.zip gater-main.zip minerva_analysis-import.zip
+    rm -r scope2screen/minerva_analysis/client/external/viaWebGL-webgl2/demo
+CODE-INSTALL-EOF
 
 #EXPOSE 8080
 # ENTRYPOINT ["bash", "/app/entrypoint.sh"]
