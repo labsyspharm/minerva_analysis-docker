@@ -1,4 +1,7 @@
 #!/bin/bash
+
+nginx -c /tmp/nginx.conf
+
 cd $(dirname $0)
 trap "echo 'shutting down'; exit" INT QUIT TERM
 python minerva_analysis/run.py 8000 1 &
