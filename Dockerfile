@@ -51,6 +51,7 @@ RUN <<CODE-INSTALL
     mv minerva_analysis-import minerva_analysis
     rm visinity-main.zip scope2screen-master.zip gater-main.zip minerva_analysis-import.zip
     rm -r scope2screen/minerva_analysis/client/external/viaWebGL-webgl2/demo
+    rm -r scope2screen/minerva_analysis/client/node_modules
 CODE-INSTALL
 
 EXPOSE 8080
